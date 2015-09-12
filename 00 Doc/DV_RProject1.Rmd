@@ -3,7 +3,7 @@ output: html_document
 ---
 Data Visualization Project 1: Titanic Passenger Data
 ===
-
+**Bryan Amaefule, Kevin Lee, Shannon Lu**
 
 
 First we load the required packages from .TestProfile
