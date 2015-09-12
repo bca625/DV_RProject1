@@ -1,38 +1,60 @@
 ---
-title: "DV_RProject1"
 output: html_document
 ---
+Data Visualization Project 1: Titanic Passenger Data
+===
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+First we load the required packages from .TestProfile
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/.TestProfile", echo=TRUE)
 ```
 
+
+```{r, warning=FALSE, message=FALSE}
+db <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_ba7433', PASS='orcl_ba7433', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+
+head(db)
+```
+
+The first ggplot program uses a generic "select * from titanic" SQL query. 
+We plot the fare paid by each passenger against their age. 
+Each passengers sex is color-coded according to the legend on the right.
+Passengers whose sex was not reported are depicted by null.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot1.R", echo=TRUE)
 ```
 
+
+The second ggplot program only accounts for passengers whose sex has been reported using the SQL query "select * from titanic where sex is not null". From this plot and the first plot before it, we can conclude that in general, female passengers paid a higher fare price, with the exception of the few passengers who paid over 500.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot2.R", echo=TRUE)
 ```
 
+
+The third ggplot program plots the fare paid by each passenger against their sex. 
+The legend is used to depict whether each passenger survived or not.
+The plot clearly indicates that female passengers survived at a higher rate than male passengers did, which probably makes sense, given the common idea of putting women and children at a higher priority.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot3.R", echo=TRUE)
 ```
 
+Using a facet grid passengers are separated by their class and whether or not they survived. By looking at the data, we discovered two outliers. If you look at the ratio of Died/Survived, the 1st and 2nd class female passengers have drastically lower numbers than all the other groups. Apparently, this means that most of the wealthy women lived...
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot4.R", echo=TRUE)
 ```
 
+By adding the SQL query 'select * from titanic where sex is not null AND age <= 10' to the same facet grid from the plot above we are able to see the survival rates of children under 10 years of age according to their class. After playing around with the data, we realized that there was quite a number of infants (age <= 1) on board, and sadly, two of them did not survive.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot5.R", echo=TRUE)
 ```
-You can also embed plots, for example:
 
-```{r, echo=FALSE}
-plot(cars)
+The 6th plot graph is opposite of Plot 5, which showed children -it shows all the passengers (male and female) who survived or died and were at least at the age of 60. The plot clearly shows that all the elder females survived the tragedy. Through further research, we discovered that the oldest female passenger was 63 years old and the oldest male passenger was 80 years old.
+```{r, warning=FALSE, message=FALSE }
+source("../02 Visualizations/Plot6.R", echo=TRUE)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r, warning=FALSE, message=FALSE }
+summary(db)
+```

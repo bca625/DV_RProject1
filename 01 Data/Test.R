@@ -6,6 +6,8 @@ library(ggplot2)
 #Build first plot
 plot1 <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_ba7433', PASS='orcl_ba7433', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
 
+oldguy <- plot1$AGE[plot1$sex=='male']
+
 ggplot() + 
   coord_cartesian() + 
   scale_x_continuous() +
