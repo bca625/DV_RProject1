@@ -1,0 +1,16 @@
+{
+    "contents" : "Using knitr to make dynamic documents\n==================\n\nWe can embed code in a special syntax, which sends it to an R process, and the output is shown in the document.  \n\n* Item 1\n* Item 2\n    + Item 2a\n    + Item 2b\n    \n\n```{r}\nx<-rnorm(1000)\nhist(x)\nrug(x)\n```{r}\n",
+    "created" : 1441989134448.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1561610908",
+    "id" : "14345E6A",
+    "lastKnownWriteTime" : 1441916047,
+    "path" : "~/Assignments/UT Austin/Data Vis/DrCannata/RWorkshop/00 KnitR/doc2.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

@@ -1,0 +1,16 @@
+{
+    "contents" : "require(\"ggthemes\")\n\nrequire(\"gplots\")\n\nrequire(\"grid\")\n\nrequire(\"RCurl\")\n\nrequire(\"reshape2\")\n\nrequire(\"rstudio\")\n\nrequire(\"tableplot\")\n\nrequire(\"tidyr\")\n\nrequire(\"dplyr\")\n\nrequire(\"jsonlite\")\n\nrequire(\"extrafont\")\n\nrequire(\"lubridate\")\n",
+    "created" : 1441987333356.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3937258959",
+    "id" : "259FEDA6",
+    "lastKnownWriteTime" : 1441926473,
+    "path" : "~/Assignments/UT Austin/Data Vis/DrCannata/.Rprofile",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
