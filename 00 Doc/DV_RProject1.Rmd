@@ -11,7 +11,7 @@ First we load the required packages from .TestProfile
 source("../02 Visualizations/.TestProfile", echo=TRUE)
 ```
 
-
+The following is data from the first six passengers on the Titanic, found in the database, followed by more descriptive plots to further show details.
 ```{r, warning=FALSE, message=FALSE}
 db <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_ba7433', PASS='orcl_ba7433', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
 
@@ -55,6 +55,7 @@ The 6th plot graph is opposite of Plot 5, which showed children -it shows all th
 source("../02 Visualizations/Plot6.R", echo=TRUE)
 ```
 
+Here is a statistical overview, in summary of all the data in the database, including median, mean, etc. values of the passengers, their ages, their fares, and more.
 ```{r, warning=FALSE, message=FALSE }
 summary(db)
 ```
