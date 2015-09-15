@@ -6,7 +6,7 @@ Data Visualization Project 1: Titanic Passenger Data Analysis
 **Bryan Amaefule, Kevin Lee, Shannon Lu**
 
 
-First we load the required packages from .TestProfile
+To begin, we loaded the required packages from a file called .TestProfile
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/.TestProfile", echo=TRUE)
 ```
@@ -79,7 +79,7 @@ source("../02 Visualizations/Plot6.R", echo=TRUE)
 According to the plot, there weren't many elderly women on board the Titanic to begin with. Only three women over 60 years old were on board; thakfully, all of them survived. The old men weren't so lucky. Over 20 males over the age of 60 were on board the Titanic when it sank, but only three of them made it out alive. The eldest of all passengers, an 80 year old male, was one of the few fortunate enough to make it out. The sample size is small but men over 60 seemed to have the lowest relative survival rate of all the passengers on the ship.
 
 
-Here is a statistical overview, in summary of all the data in the database, including median, mean, etc. values of the passengers, their ages, their fares, and more.
+In summary, we have provided a statistical overview of all the data in the database. using the summary function we show the 
 ```{r, warning=FALSE, message=FALSE }
 summary(db)
 ```
