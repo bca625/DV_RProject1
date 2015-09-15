@@ -1,7 +1,7 @@
 ---
 output: html_document
 ---
-Data Visualization Project 1: Titanic Passenger Data
+Data Visualization Project 1: Titanic Passenger Data Analysis
 ===
 **Bryan Amaefule, Kevin Lee, Shannon Lu**
 
@@ -19,41 +19,65 @@ head(db)
 ```
 
 The first ggplot program uses a generic "select * from titanic" SQL query. 
-We plot the fare paid by each passenger against their age. 
+We plot the fare paid by each passenger (y-axis) against their age (x-axis). Both fare and age are plotted as continuous variables.
 Each passengers sex is color-coded according to the legend on the right.
 Passengers whose sex was not reported are depicted by null.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot1.R", echo=TRUE)
 ```
 
-
-The second ggplot program only accounts for passengers whose sex has been reported using the SQL query "select * from titanic where sex is not null". From this plot and the first plot before it, we can conclude that in general, female passengers paid a higher fare price, with the exception of the few passengers who paid over 500.
+The second plot follows the same guidlines as the first plot, however, we now only account for passengers whose sex has been reported. Using the SQL query "select * from titanic where sex is not null" filters out passengers whose sex were not known.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot2.R", echo=TRUE)
 ```
 
+From the first two plots, it is apparent that most passengers paid fares below 100, some paid up to 200-300, and an exceptional few paid fares over 500.
 
-The third ggplot program plots the fare paid by each passenger against their sex. 
-The legend is used to depict whether each passenger survived or not.
-The plot clearly indicates that female passengers survived at a higher rate than male passengers did, which probably makes sense, given the common idea of putting women and children at a higher priority.
+
+
+
+
+
+The third plot shows the relationships between the fare paid by each passenger, their sex, and whether or not they survived. 
+Fare is left as a continuous value on the y-axis, while sex is set as a discrete value on the x-axis.
+Passengers are color-coded according to whether they survived the tragedy or not. A 0 (red dot) means that this passenger did not survive, while a 1 (blue dot) indicates that this passenger did survive.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot3.R", echo=TRUE)
 ```
 
-Using a facet grid passengers are separated by their class and whether or not they survived. By looking at the data, we discovered two outliers. If you look at the ratio of Died/Survived, the 1st and 2nd class female passengers have drastically lower numbers than all the other groups. Apparently, this means that most of the wealthy women lived...
+The plot indicates that female passengers survived at a higher rate than male passengers did, which probably makes sense, given the common idea of putting women and children at a higher priority.
+
+
+
+
+
+
+The fourth plot keeps the same axis variables as the previous one, however, we now use a facet grid to group passengers by their class and whether or not they survived. Passengers sex is color-coded according to the legend.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot4.R", echo=TRUE)
 ```
 
-By adding the SQL query 'select * from titanic where sex is not null AND age <= 10' to the same facet grid from the plot above we are able to see the survival rates of children under 10 years of age according to their class. After playing around with the data, we realized that there was quite a number of infants (age <= 1) on board, and sadly, two of them did not survive.
+Using the facet grid presents the data in an interesting way. The data suggests that passengers were prioritized not only by sex, but also by class. Female passengers in first class survived at a much higher rate than any other group depicted. Female passengers in second class were also more likely to survive than their male counterparts. In third class, there doesn't seem to be much difference in the survival of males or females.
+
+
+
+
+
+
+By applying the SQL query 'select * from titanic where sex is not null AND age <= 10' to the same facet grid from the plot above we are able to see the survival rates of children under 10 years of age according to their class. 
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot5.R", echo=TRUE)
 ```
 
-The 6th plot graph is opposite of Plot 5, which showed children -it shows all the passengers (male and female) who survived or died and were at least at the age of 60. The plot clearly shows that all the elder females survived the tragedy. Through further research, we discovered that the oldest female passenger was 63 years old and the oldest male passenger was 80 years old.
+The sample sizes are too small to be certain, but it would appear that children survived at a high rate compared to the adults. Of the three children in first class, one little girl did not survive. All of the children riding in second class managed to survive the tragedy. Survival for children in the thrird class was 50/50. Out of curiousity we fiddled with the data frame to determine the number of infants (age <= 1) were on board the Titanic. There were quite a number of infants on board, but sadlyt two of them did not survive.
+
+The 6th plot was an idea we came up with ourselves. "Women and children first" is common saying in regards to maritime disasters. But where did passengers on the Titanic prioritize the elderly? In antitheis to the 5th plot, the plot below shows the survival rate of senior citizens (passengers 60 years or older). The axes and facet grid remain the same from the previous plot, while the SQL query was changed to 'select * from titanic where sex is not null AND age >= 60'.
 ```{r, warning=FALSE, message=FALSE }
 source("../02 Visualizations/Plot6.R", echo=TRUE)
 ```
+
+According to the plot, there weren't many elderly women on board the Titanic to begin with. Only three women over 60 years old were on board; thakfully, all of them survived. The old men weren't so lucky. Over 20 males over the age of 60 were on board the Titanic when it sank, but only three of them made it out alive. The eldest of all passengers, an 80 year old male, was one of the few fortunate enough to make it out. The sample size is small but men over 60 seemed to have the lowest relative survival rate of all the passengers on the ship.
+
 
 Here is a statistical overview, in summary of all the data in the database, including median, mean, etc. values of the passengers, their ages, their fares, and more.
 ```{r, warning=FALSE, message=FALSE }
